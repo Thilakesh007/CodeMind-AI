@@ -4,3 +4,7 @@ vector_db/
 chroma_db/
 __pycache__/
 venv/
+.env
+backend/.env
+venv/
+__pycache__/
