@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/repositories:/app/repositories
+      - ./backend/vector_db:/app/vector_db
+      - ./backend/config.json:/app/config.json
+    environment:
+      # Allow docker container to reach the host's localhost (where Ollama runs)
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    # Use host network on Linux to reach Ollama easily, or extra_hosts for Mac/Windows
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

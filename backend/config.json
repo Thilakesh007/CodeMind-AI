@@ -1,0 +1,8 @@
+{
+    "ollama_host": "http://localhost:11434",
+    "primary_model": "qwen2.5-coder",
+    "ai_provider": "ollama",
+    "openai_api_key": "",
+    "anthropic_api_key": "",
+    "gemini_api_key": ""
+}

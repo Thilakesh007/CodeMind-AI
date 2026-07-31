@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+
+<div class="toggle" onclick="toggleTheme()">🌙</div>
+
+<div class="card">
+  <h2>Welcome Back 👋</h2>
+  <div class="subtitle">Login to Student Engagement System</div>
+
+  <form method="POST" onsubmit="showLoader()">
+    <input name="username" placeholder="Username" required>
+    <input name="password" type="password" placeholder="Password" required>
+
+    <select name="role">
+      <option value="student">Student</option>
+      <option value="faculty">Faculty</option>
+    </select>
+
+    <button id="loginBtn">Sign In</button>
+  </form>
+
+  {% if error %}
+    <div class="error">{{ error }}</div>
+  {% endif %}
+
+  <div class="loader" id="loader">🔄 Signing in...</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+</html>

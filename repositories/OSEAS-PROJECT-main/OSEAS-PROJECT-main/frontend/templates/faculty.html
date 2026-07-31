@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Faculty Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/faculty.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div>
+      <h1> 🎓 Faculty Engagement Dashboard</h1>
+      <p style="color:var(--text-muted)">Student performance overview</p>
+    </div>
+    <button onclick="window.location.href='/logout'">Logout</button>
+  </div>
+
+  <!-- TOP STATS -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px">
+    <div class="card">
+      <b>Total Students</b><br>
+      <span style="font-size:26px">{{ records|length }}</span>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <input id="search" placeholder="Search Student..." onkeyup="filterTable()">
+
+  <!-- TABLE -->
+  <div class="card">
+    <table>
+      <tr>
+        <th>Student Name</th>
+        <th>Date</th>
+        <th>Presence (s)</th>
+        <th>Engagement (s)</th>
+        <th>Engagement %</th>
+        <th>Attention %</th>
+        <th>Attendance</th>
+        <th>Grade</th>
+      </tr>
+
+      {% for r in records %}
+      <tr>
+        <td>{{r[0]}}</td>
+        <td>{{r[1]}}</td>
+        <td>{{r[2]}}</td>
+        <td>{{r[3]}}</td>
+        <td>{{r[4]}}</td>
+        <td>{{r[5]}}</td>
+        <td>{{r[6]}}</td>
+        <td style="
+          font-weight:600;
+          color:
+          {% if 'A' in r[7] %}#16a34a
+          {% elif 'B' in r[7] %}#2563eb
+          {% elif 'C' in r[7] %}#f59e0b
+          {% else %}#dc2626
+          {% endif %}
+        ">
+        {{ r[7] }}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/faculty.js') }}"></script>
+
+</body>
+</html>

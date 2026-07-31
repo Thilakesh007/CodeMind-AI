@@ -1,0 +1,437 @@
+{
+    "b68ca2d1-edf2-47ad-ba19-fc8adc1e4f17": {
+        "id": "b68ca2d1-edf2-47ad-ba19-fc8adc1e4f17",
+        "title": "Can you please unit tests for my project...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please unit tests for my project?",
+                "mode": {
+                    "id": "tests",
+                    "label": "Unit Tests",
+                    "endpoint": "/tests",
+                    "placeholder": "e.g. Write tests for the login component...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "To write comprehensive and edge-case-covering unit tests for your provided code context, we need to understand the functionality of each component. Given that the code is in Python and uses libraries such as `streamlit`, `pandas`, `matplotlib`, `selenium`, and `sqlite3`, we will use the `unittest` framework along with `pytest` for more advanced testing features.\n\nHere\u2019s a breakdown of the components to test:\n1. **Happy-path tests**: Ensure that the functions work correctly under normal conditions.\n2. **Edge-case tests**: Test boundary conditions, such as empty inputs or unexpected data types.\n3. **Error-handling tests**: Verify that the code handles errors gracefully, such as database connection issues or invalid input.\n\n### Testing Strategy\n\n1. **Happy-path tests**:\n   - Ensure that functions return expected results when provided with typical inputs.\n\n2. **Edge-case tests**:\n   - Test how the functions handle edge cases, such as empty lists, non-string inputs, or large data sets.\n\n3. **Error-handling tests**:\n   - Verify that exceptions are raised and handled correctly in error scenarios.\n\n### Unit Tests\n\nLet's write the unit tests for each function:\n\n#### 1. `extract_steps(text)`\n\n```python\nimport unittest\nfrom your_module import extract_steps\n\nclass TestExtractSteps(unittest.TestCase):\n    def test_happy_path(self):\n        text = \"Open https://example.com\\nEnter username: admin\\nEnter password: secret\"\n        expected_output = [('open', 'https://example.com'), ('enter', {'type': 'username', 'value': 'admin'}), ('enter', {'type': 'password', 'value': 'secret'})]\n        self.assertEqual(extract_steps(text), expected_output)\n\n    def test_empty_input(self):\n        text = \"\"\n        expected_output = []\n        self.assertEqual(extract_steps(text), expected_output)\n\n    def test_invalid_input_type(self):\n        with self.assertRaises(TypeError):\n            extract_steps(12345)\n\nif __name__ == \"__main__\":\n    unittest.main()\n```\n\n#### 2. `analyze_results(results)`\n\n```python\nclass TestAnalyzeResults(unittest.TestCase):\n    def test_happy_path_confirmed(self):\n        results = [True, True, True]\n        expected_output = ('confirmed', '\ud83d\udea8 Bug Consistently Reproduced')\n        self.assertEqual(analyze_results(results), expected_output)\n\n    def test_happy_path_flaky(self):\n        results = [True, False, True]\n        expected_output = ('flaky', '\u26a0\ufe0f Flaky Bug (Sometimes Occurs)')\n        self.assertEqual(analyze_results(results), expected_output)\n\n    def test_happy_path_none(self):\n        results = [False, False, False]\n        expected_output = ('none', '\u2705 No Bug Detected')\n        self.assertEqual(analyze_results(results), expected_output)\n\n    def test_empty_input(self):\n        with self.assertRaises(ValueError):\n            analyze_results([])\n\nif __name__ == \"__main__\":\n    unittest.main()\n```\n\n#### 3. `init_db()`\n\n```python\nimport unittest\nfrom your_module import init_db\n\nclass TestInitDB(unittest.TestCase):\n    def test_happy_path(self):\n        init_db()\n        conn = sqlite3.connect(\"bug_results.db\")\n        c = conn.cursor()\n        c.execute(\"SELECT name FROM sqlite_master WHERE type='table' AND name='results'\")\n        table_exists = c.fetchone() is not None\n        conn.close()\n        self.assertTrue(table_exists)\n\nif __name__ == \"__main__\":\n    unittest.main()\n```\n\n#### 4. `save_result(bug_text, runs, status)`\n\n```python\nclass TestSaveResult(unittest.TestCase):\n    def test_happy_path(self):\n        save_result(\"Test Bug\", 3, \"none\")\n        conn = sqlite3.connect(\"bug_results.db\")\n        c = conn.cursor()\n        c.execute(\"SELECT * FROM results WHERE bug_text='Test Bug' AND runs=3 AND status='none'\")\n        result = c.fetchone()\n        conn.close()\n        self.assertIsNotNone(result)\n\n    def test_invalid_input_type(self):\n        with self.assertRaises(TypeError):\n            save_result(12345, \"three\", 0.5)\n\nif __name__ == \"__main__\":\n    unittest.main()\n```\n\n### Mocking External Dependencies\n\nFor functions that interact with external dependencies like databases or file systems, use libraries such as `unittest.mock` to mock these interactions.\n\n#### Example: Mocking a Database Call in `save_result`\n\n```python\nfrom unittest.mock import patch\n\n@patch('your_module.sqlite3.connect')\ndef test_save_result_with_mock_db(mock_connect):\n    conn = mock_connect.return_value\n    c = conn.cursor.return_value\n    save_result(\"Test Bug\", 3, \"none\")\n    \n    mock_connect.assert_called_once_with(\"bug_results.db\")\n    c.execute.assert_called_once_with(\"INSERT INTO results (bug_text, runs, status) VALUES (?, ?, ?)\", (\"Test Bug\", 3, \"none\"))\n    conn.commit.assert_called_once()\n    conn.close.assert_called_once()\n\nif __name__ == \"__main__\":\n    unittest.main()\n```\n\nThese unit tests should provide a solid foundation for ensuring the reliability and robustness of your project.",
+                "sources": [
+                    {
+                        "content": "istory yet\")\n",
+                        "metadata": {
+                            "project": "code debugger",
+                            "language": "python",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "chunk_id": 10
+                        }
+                    },
+                    {
+                        "content": ".metric(\"\u26a0\ufe0f Flaky\", (df[\"Status\"] == \"flaky\").sum())\n    col4.metric(\"\u2705 None\", (df[\"Status\"] == \"none\").sum())\n\n    # -------------------------------\n    # \ud83d\udccb TABLE\n    # -------------------------------\n    st.write(\"### \ud83d\udccb Test History Table\")\n    st.dataframe(df, use_container_width=True)\n\n    # -------------------------------\n    # \ud83d\udcc8 CHART\n    # -------------------------------\n    st.write(\"### \ud83d\udcc8 Bug Distribution\")\n\n    status_counts = df[\"Status\"].value_counts()\n\n    fig, ax = plt.subplots()\n    ax.bar(status_counts.index, status_counts.values)\n    ax.set_xlabel(\"Status\")\n    ax.set_ylabel(\"Count\")\n\n    st.pyplot(fig)\n\n    # -------------------------------\n    # \ud83d\uddd1\ufe0f CLEAR BUTTON\n    # -------------------------------\n    if st.button(\"\ud83d\uddd1\ufe0f Clear History\"):\n        conn = sqlite3.connect(\"bug_results.db\")\n        c = conn.cursor()\n        c.execute(\"DELETE FROM results\")\n        conn.commit()\n        conn.close()\n        st.success(\"History cleared! Refresh page\")\n\nelse:\n    st.info(\"No h",
+                        "metadata": {
+                            "language": "python",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "chunk_id": 9,
+                            "project": "code debugger"
+                        }
+                    },
+                    {
+                        "content": "import streamlit as st\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom selenium import webdriver\nfrom selenium.webdriver.common.by import By\nfrom selenium.webdriver.chrome.service import Service\nfrom webdriver_manager.chrome import ChromeDriverManager\nimport time\nimport re\nimport sqlite3\nfrom datetime import datetime\n\n# =========================================================\n# 1. ALL CORE FUNCTIONS (NLP + EXECUTION + DETECTION)\n# =========================================================\n\ndef extract_steps(text):\n    steps = []\n    lines = text.lower().split(\"\\n\")\n\n    for line in lines:\n        url = re.findall(r'(https?://[^\\s]+)', line)\n        if url:\n            steps.append((\"open\", url[0]))\n\n        elif \"open\" in line:\n            steps.append((\"open\", \"https://example.com\"))\n\n        elif \"username\" in line:\n            steps.append((\"enter\", {\"type\": \"username\", \"value\": \"admin\"}))\n\n        elif \"password\" in line:\n            steps.append((\"enter\", {\"type\": \"passwo",
+                        "metadata": {
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "chunk_id": 1,
+                            "project": "code debugger",
+                            "language": "python"
+                        }
+                    },
+                    {
+                        "content": "    try:\n            driver.quit()\n        except:\n            pass\n\n    return results, all_logs, all_screenshots\n\n\ndef analyze_results(results):\n    true_count = sum(results)\n\n    if true_count == len(results):\n        return \"confirmed\", \"\ud83d\udea8 Bug Consistently Reproduced\"\n    elif true_count > 0:\n        return \"flaky\", \"\u26a0\ufe0f Flaky Bug (Sometimes Occurs)\"\n    else:\n        return \"none\", \"\u2705 No Bug Detected\"\n\n\n# =========================================================\n# 2. DATABASE FUNCTIONS\n# =========================================================\n\ndef init_db():\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c.execute(\"\"\"\n    CREATE TABLE IF NOT EXISTS results (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        bug_text TEXT,\n        runs INTEGER,\n        status TEXT,\n        timestamp TEXT\n    )\n    \"\"\")\n\n    conn.commit()\n    conn.close()\n\n\ndef save_result(bug_text, runs, status):\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c",
+                        "metadata": {
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "project": "code debugger",
+                            "chunk_id": 5,
+                            "language": "python"
+                        }
+                    }
+                ],
+                "mode": {
+                    "id": "tests",
+                    "label": "Unit Tests",
+                    "endpoint": "/tests",
+                    "placeholder": "e.g. Write tests for the login component...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-07-30T14:22:36.333567"
+    },
+    "0657a264-08d8-4b20-96d4-24f62b1f1928": {
+        "id": "0657a264-08d8-4b20-96d4-24f62b1f1928",
+        "title": "Can you please readme gen for my project...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please readme gen for my project?",
+                "mode": {
+                    "id": "readme",
+                    "label": "README Gen",
+                    "endpoint": "/readme",
+                    "placeholder": "e.g. Write a comprehensive README for this project...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "```markdown\n# \ud83d\ude80 Student Engagement Tracker\n\n[![GitHub](https://img.shields.io/badge/GitHub-CodeMindAI-blue)](https://github.com/CodeMindAI/student-engagement-tracker)\n[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)\n\n## \ud83d\udcd6 Description\n\nThe Student Engagement Tracker is a web application designed to monitor and analyze student engagement levels in the classroom. It provides real-time data on attention, engagement level, attendance, and grades, helping educators make informed decisions about their teaching methods.\n\n## \u2728 Features\n\n- **Real-Time Data**: Monitor student engagement in real-time.\n- **Detailed Analytics**: Gain insights into student performance through detailed analytics.\n- **Customizable Reports**: Generate customized reports for better understanding of student behavior.\n- **User-Friendly Interface**: An intuitive interface that makes it easy to track and analyze data.\n\n## \ud83d\udee0\ufe0f Tech Stack\n\n- **Frontend**: HTML, CSS, JavaScript\n- **Backend**: Python (Flask)\n- **Database**: SQLite\n\n## \ud83d\udce6 Installation\n\n1. **Clone the Repository**:\n   ```bash\n   git clone https://github.com/CodeMindAI/student-engagement-tracker.git\n   cd student-engagement-tracker\n   ```\n\n2. **Create a Virtual Environment**:\n   ```bash\n   python -m venv venv\n   source venv/bin/activate  # On Windows use `venv\\Scripts\\activate`\n   ```\n\n3. **Install Dependencies**:\n   ```bash\n   pip install Flask\n   ```\n\n4. **Run the Application**:\n   ```bash\n   flask run\n   ```\n\n## \ud83d\udcbb Usage\n\n1. Open your web browser and navigate to [http://127.0.0.1:5000/](http://127.0.0.1:5000/).\n2. Enter student data into the form.\n3. The application will display real-time engagement metrics, attendance, and grades.\n\n## \ud83e\udd1d Contributing\n\nContributions are welcome! Please follow these steps to contribute to this project:\n\n1. **Fork the Repository**: Click on the \"Fork\" button at the top of this page.\n2. **Create a New Branch**:\n   ```bash\n   git checkout -b feature/my-feature\n   ```\n3. **Make Changes**: Make your changes and commit them with descriptive messages.\n4. **Push to Your Fork**: \n   ```bash\n   git push origin feature/my-feature\n   ```\n5. **Open a Pull Request**: Go to the original repository, click on \"Pull Requests,\" and submit your PR.\n\nFeel free to suggest any improvements or report issues via GitHub Issues.\n```\n\nThis README provides a comprehensive overview of your project, including installation instructions, usage guidance, and contribution guidelines.",
+                "sources": [
+                    {
+                        "content": "der=header)\n",
+                        "metadata": {
+                            "chunk_id": 52,
+                            "file": "../repositories/OSEAS-PROJECT-main\\OSEAS-PROJECT-main\\database\\attendance_repository.py",
+                            "language": "python",
+                            "project": "OSEAS-PROJECT-main"
+                        }
+                    },
+                    {
+                        "content": "%</th>\n        <th>Attention %</th>\n        <th>Attendance</th>\n        <th>Grade</th>\n      </tr>\n\n      {% for r in records %}\n      <tr>\n        <td>{{r[0]}}</td>\n        <td>{{r[1]}}</td>\n        <td>{{r[2]}}</td>\n        <td>{{r[3]}}</td>\n        <td>{{r[4]}}</td>\n        <td>{{r[5]}}</td>\n        <td>{{r[6]}}</td>\n        <td style=\"\n          font-weight:600;\n          color:\n          {% if 'A' in r[7] %}#16a34a\n          {% elif 'B' in r[7] %}#2563eb\n          {% elif 'C' in r[7] %}#f59e0b\n          {% else %}#dc2626\n          {% endif %}\n        \">\n        {{ r[7] }}\n        </td>\n      </tr>\n      {% endfor %}\n    </table>\n  </div>\n\n</div>\n\n<script src=\"{{ url_for('static', filename='js/faculty.js') }}\"></script>\n\n</body>\n</html>\n",
+                        "metadata": {
+                            "chunk_id": 80,
+                            "project": "OSEAS-PROJECT-main",
+                            "file": "../repositories/OSEAS-PROJECT-main\\OSEAS-PROJECT-main\\frontend\\templates\\faculty.html",
+                            "language": "html"
+                        }
+                    },
+                    {
+                        "content": "background:#dcfce7;color:#166534}\n.distracted{background:#fee2e2;color:#991b1b}\n.neutral{background:#fef9c3;color:#854d0e}\n\n\n.engaged{background:#16a34a}\n.distracted{background:#dc2626}\n.neutral{background:#f59e0b;color:black}\n",
+                        "metadata": {
+                            "project": "OSEAS-PROJECT-main",
+                            "chunk_id": 60,
+                            "language": "css",
+                            "file": "../repositories/OSEAS-PROJECT-main\\OSEAS-PROJECT-main\\frontend\\static\\css\\dashboard.css"
+                        }
+                    },
+                    {
+                        "content": "n.loading{\n  background:#94a3b8;\n  pointer-events:none;\n}\n\n.demo{\n  background:rgba(148,163,184,0.15);\n  border:1px dashed var(--border);\n  border-radius:12px;\n  padding:12px;\n  margin-top:18px;\n  font-size:13px;\n}\n\n.error{\n  color:#dc2626;\n  font-size:14px;\n  margin-top:10px;\n}\n\n.loader{\n  display:none;\n  text-align:center;\n  margin-top:15px;\n  font-size:14px;\n}\n",
+                        "metadata": {
+                            "file": "../repositories/OSEAS-PROJECT-main\\OSEAS-PROJECT-main\\frontend\\static\\css\\login.css",
+                            "chunk_id": 65,
+                            "project": "OSEAS-PROJECT-main",
+                            "language": "css"
+                        }
+                    },
+                    {
+                        "content": "ext = d.movement;\n      document.getElementById(\"at\").innerText = d.attendance;\n      document.getElementById(\"el\").innerText = d.engagement_level;\n      document.getElementById(\"studentNameDisplay\").innerText = d.student_name;\n      document.getElementById(\"sname\").innerText = d.student_name;\n\n      const badge = document.getElementById(\"statusBadge\");\n      badge.className =\n        d.movement.includes(\"Engaged\") ? \"badge engaged\" :\n        d.movement.includes(\"Distracted\") ? \"badge distracted\" :\n        \"badge neutral\";\n\n      badge.innerText = d.movement;\n\n      // \ud83d\udd25 GRAPH UPDATE\n      updateChart(d.engagement, d.attention);\n\n    });\n}, 1000);\n",
+                        "metadata": {
+                            "language": "javascript",
+                            "project": "OSEAS-PROJECT-main",
+                            "chunk_id": 71,
+                            "file": "../repositories/OSEAS-PROJECT-main\\OSEAS-PROJECT-main\\frontend\\static\\js\\dashboard.js"
+                        }
+                    }
+                ],
+                "mode": {
+                    "id": "readme",
+                    "label": "README Gen",
+                    "endpoint": "/readme",
+                    "placeholder": "e.g. Write a comprehensive README for this project...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-07-30T15:51:47.794149"
+    },
+    "ce70f37c-23fd-428e-8e07-c47b4c1b4fe5": {
+        "id": "ce70f37c-23fd-428e-8e07-c47b4c1b4fe5",
+        "title": "Can you please readme gen for my project...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please readme gen for my project?",
+                "mode": {
+                    "id": "readme",
+                    "label": "README Gen",
+                    "endpoint": "/readme",
+                    "placeholder": "e.g. Write a comprehensive README for this project...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "Sure! I'd be happy to help generate a README for your project. Please provide the context or details about your project, and I will create a professional `README.md` file based on that information.",
+                "sources": [],
+                "mode": {
+                    "id": "readme",
+                    "label": "README Gen",
+                    "endpoint": "/readme",
+                    "placeholder": "e.g. Write a comprehensive README for this project...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-07-30T15:52:13.948278"
+    },
+    "c193a87b-86a0-4f5b-83f2-4f1e7b5f1d80": {
+        "id": "c193a87b-86a0-4f5b-83f2-4f1e7b5f1d80",
+        "title": "Can you please readme gen for my project...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please readme gen for my project?",
+                "mode": {
+                    "id": "readme",
+                    "label": "README Gen",
+                    "endpoint": "/readme",
+                    "placeholder": "e.g. Write a comprehensive README for this project...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "Sure, I'd be happy to help you generate a README.md for your project. However, I'll need more information about your project. Could you please provide the context and question related to your project? This will help me tailor the README to your needs.\n\n**Example Context:**\n- Project Name: MyAwesomeProject\n- Description: A simple web application that helps users manage their tasks.\n- Features: User authentication, task creation, and deletion.\n- Tech Stack: Node.js, Express, MongoDB\n\n**Example Question:**\nWhat sections should be included in the README.md?\n\nOnce you provide this information, I can generate a professional README for your project.",
+                "sources": [],
+                "mode": {
+                    "id": "readme",
+                    "label": "README Gen",
+                    "endpoint": "/readme",
+                    "placeholder": "e.g. Write a comprehensive README for this project...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-07-30T15:59:36.116319"
+    },
+    "76c8f637-f016-4bb7-b5a8-a63ef524ed0d": {
+        "id": "76c8f637-f016-4bb7-b5a8-a63ef524ed0d",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "# Bug Reproduction Engine Documentation\n\n## Overview\nThe Bug Reproduction Engine is a comprehensive solution designed to automate the process of reproducing and detecting bugs in web applications. This tool leverages Selenium WebDriver, Streamlit, NLP (Natural Language Processing), and SQLite database for efficient bug detection and reporting.\n\n## Core Functions\n\n### extract_steps(text)\n**Description**: Extracts steps from a bug report text.\n- **Parameters / Arguments**:\n  | Parameter | Type   | Description                            |\n  |-----------|--------|------------------------------------------|\n  | text      | string | The bug report text to process.          |\n  \n- **Returns**: A list of tuples, where each tuple represents a step in the format `(action, value)`.\n\n### run_steps(steps, run_id)\n**Description**: Executes a series of steps using Selenium WebDriver.\n- **Parameters / Arguments**:\n  | Parameter | Type     | Description                            |\n  |-----------|----------|------------------------------------------|\n  | steps     | list     | A list of tuples representing the steps.   |\n  | run_id    | integer  | The run identifier for logging purposes. |\n\n- **Returns**: A tuple containing the WebDriver instance, a list of screenshots, and a list of logs.\n\n### detect_bug(driver)\n**Description**: Detects if a bug exists in the current page by searching for specific keywords.\n- **Parameters / Arguments**:\n  | Parameter | Type     | Description                            |\n  |-----------|----------|------------------------------------------|\n  | driver    | WebDriver| The Selenium WebDriver instance.           |\n\n- **Returns**: A tuple containing a boolean indicating if a bug is detected and the keyword that triggered the detection.\n\n### is_driver_alive(driver)\n**Description**: Checks if the WebDriver instance is still active.\n- **Parameters / Arguments**:\n  | Parameter | Type     | Description                            |\n  |-----------|----------|------------------------------------------|\n  | driver    | WebDriver| The Selenium WebDriver instance.           |\n\n- **Returns**: A boolean indicating whether the WebDriver instance is still alive.\n\n### run_multiple_times(steps, runs=3)\n**Description**: Runs a series of steps multiple times and collects results.\n- **Parameters / Arguments**:\n  | Parameter | Type     | Description                            |\n  |-----------|----------|------------------------------------------|\n  | steps     | list     | A list of tuples representing the steps.   |\n  | runs      | integer  | The number of times to run the steps.    |\n\n- **Returns**: A tuple containing a list of results, all logs, and all screenshots.\n\n## Usage Example\n\n```python\nimport streamlit as st\nfrom bug_reproduction_engine import extract_steps, run_multiple_times, analyze_results, save_result\n\n# Sample bug report text\nbug_text = \"\"\"\nOpen https://example.com\nEnter username admin\nEnter password secret123\n\"\"\"\n\n# Extract steps from the bug report\nsteps = extract_steps(bug_text)\n\n# Run multiple times and collect results\nresults, logs, screenshots = run_multiple_times(steps, runs=3)\n\n# Analyze results\nstatus, message = analyze_results(results)\n\n# Save result to database\nsave_result(bug_text, 3, status)\n\n# Display results in Streamlit app\nst.write(\"### Final Result\")\nif status == \"confirmed\":\n    st.error(message)\nelif status == \"flaky\":\n    st.warning(message)\nelse:\n    st.success(message)\n\nst.write(\"### Execution Logs\")\nfor log in logs:\n    st.write(log)\n\nst.write(\"### Screenshots\")\nfor img in screenshots:\n    st.image(img)\n```\n\n## History Section\n\nThe history section of the application allows users to view previously executed test results. The `get_history()` function retrieves all entries from the SQLite database and displays them.\n\n## Database Initialization\n\nThe `init_db()` function initializes the SQLite database and creates a table for storing bug results if it does not already exist.\n\n## UI Code\n\nThe user interface is built using Streamlit, which provides an interactive web app where users can input their bug reports and run multiple test cases. The app displays the final result, execution logs, and screenshots.\n\nThis documentation provides a comprehensive overview of the Bug Reproduction Engine, its core functions, usage example, and how it integrates with Streamlit for user interaction.",
+                "sources": [
+                    {
+                        "content": "istory yet\")\n",
+                        "metadata": {
+                            "project": "code debugger",
+                            "chunk_id": 10,
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "language": "python"
+                        }
+                    },
+                    {
+                        "content": "d(file)\n\n        except Exception as e:\n            logs.append(f\"[Run {run_id}] Error: {e}\")\n            break\n\n    return driver, screenshots, logs\n\n\ndef detect_bug(driver):\n    try:\n        page = driver.page_source.lower()\n        keywords = [\"error\", \"invalid\", \"failed\", \"exception\"]\n\n        for word in keywords:\n            if word in page:\n                return True, word\n\n        return False, None\n\n    except:\n        return False, \"browser_closed\"\n\n\ndef is_driver_alive(driver):\n    try:\n        driver.current_url\n        return True\n    except:\n        return False\n\n\ndef run_multiple_times(steps, runs=3):\n    results = []\n    all_logs = []\n    all_screenshots = []\n\n    for i in range(runs):\n        driver, screenshots, logs = run_steps(steps, i)\n\n        if is_driver_alive(driver):\n            result, _ = detect_bug(driver)\n        else:\n            result = False\n\n        results.append(result)\n        all_logs.extend(logs)\n        all_screenshots.extend(screenshots)\n\n    ",
+                        "metadata": {
+                            "language": "python",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "chunk_id": 4,
+                            "project": "code debugger"
+                        }
+                    },
+                    {
+                        "content": "bug report!\")\n    else:\n        steps = extract_steps(bug_text)\n\n        st.write(\"### \ud83e\udde0 Extracted Steps\")\n        st.write(steps)\n\n        st.write(f\"### \ud83d\udd01 Running {runs} times...\")\n        results, logs, screenshots = run_multiple_times(steps, runs)\n\n        status, message = analyze_results(results)\n\n        save_result(bug_text, runs, status)\n\n        st.write(\"### \ud83d\udcca Final Result\")\n        if status == \"confirmed\":\n            st.error(message)\n        elif status == \"flaky\":\n            st.warning(message)\n        else:\n            st.success(message)\n\n        st.write(\"### \ud83e\uddfe Execution Logs\")\n        for log in logs:\n            st.write(log)\n\n        st.write(\"### \ud83d\udcf8 Screenshots\")\n        for img in screenshots:\n            st.image(img)\n\n        st.info(\"Testing Completed \u2705\")\n\n\n# =========================================================\n# \ud83d\udcca HISTORY SECTION\n# =========================================================\nst.write(\"## \ud83d\udcca Test Dashboard\")\n\nhistory = get_history()\n\nif hist",
+                        "metadata": {
+                            "chunk_id": 7,
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "language": "python",
+                            "project": "code debugger"
+                        }
+                    },
+                    {
+                        "content": "import streamlit as st\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom selenium import webdriver\nfrom selenium.webdriver.common.by import By\nfrom selenium.webdriver.chrome.service import Service\nfrom webdriver_manager.chrome import ChromeDriverManager\nimport time\nimport re\nimport sqlite3\nfrom datetime import datetime\n\n# =========================================================\n# 1. ALL CORE FUNCTIONS (NLP + EXECUTION + DETECTION)\n# =========================================================\n\ndef extract_steps(text):\n    steps = []\n    lines = text.lower().split(\"\\n\")\n\n    for line in lines:\n        url = re.findall(r'(https?://[^\\s]+)', line)\n        if url:\n            steps.append((\"open\", url[0]))\n\n        elif \"open\" in line:\n            steps.append((\"open\", \"https://example.com\"))\n\n        elif \"username\" in line:\n            steps.append((\"enter\", {\"type\": \"username\", \"value\": \"admin\"}))\n\n        elif \"password\" in line:\n            steps.append((\"enter\", {\"type\": \"passwo",
+                        "metadata": {
+                            "project": "code debugger",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "language": "python",
+                            "chunk_id": 1
+                        }
+                    },
+                    {
+                        "content": ".execute(\n        \"INSERT INTO results (bug_text, runs, status, timestamp) VALUES (?, ?, ?, ?)\",\n        (bug_text, runs, status, datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\"))\n    )\n\n    conn.commit()\n    conn.close()\n\n\ndef get_history():\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c.execute(\"SELECT * FROM results ORDER BY id DESC\")\n    data = c.fetchall()\n\n    conn.close()\n    return data\n\n\n# =========================================================\n# 3. INITIALIZE DATABASE\n# =========================================================\n\ninit_db()\n\n\n# =========================================================\n# 4. UI CODE\n# =========================================================\n\nst.title(\"\ud83d\udc1e Bug Reproduction Engine \u2013 Phase 3 \ud83d\ude80\")\nst.write(\"Now supports real website testing + smart detection\")\n\nbug_text = st.text_area(\"Enter Bug Report\")\nruns = st.slider(\"Number of test runs\", 1, 5, 3)\n\nif st.button(\"Run\"):\n    if not bug_text.strip():\n        st.warning(\"Enter ",
+                        "metadata": {
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "language": "python",
+                            "chunk_id": 6,
+                            "project": "code debugger"
+                        }
+                    }
+                ],
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-07-31T09:44:53.784510"
+    },
+    "ab2b7105-a75e-4306-a4ee-0412a30bc23c": {
+        "id": "ab2b7105-a75e-4306-a4ee-0412a30bc23c",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-07-31T11:51:15.462972"
+    },
+    "e0b28926-6098-4b58-8266-29b836168bc6": {
+        "id": "e0b28926-6098-4b58-8266-29b836168bc6",
+        "title": "Can you please architecture for my proje...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please architecture for my project?",
+                "mode": {
+                    "id": "architecture",
+                    "label": "Architecture",
+                    "endpoint": "/architecture",
+                    "placeholder": "e.g. Explain how the database connects...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-07-31T11:54:37.000838"
+    },
+    "3a19e0c6-bb93-427a-b46b-e576b05ab61a": {
+        "id": "3a19e0c6-bb93-427a-b46b-e576b05ab61a",
+        "title": "Can you please architecture for my proje...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please architecture for my project?",
+                "mode": {
+                    "id": "architecture",
+                    "label": "Architecture",
+                    "endpoint": "/architecture",
+                    "placeholder": "e.g. Explain how the database connects...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-07-31T11:54:59.306745"
+    },
+    "9e3d5cbf-b669-42af-82d4-4d57d67f698e": {
+        "id": "9e3d5cbf-b669-42af-82d4-4d57d67f698e",
+        "title": "Can you please architecture for my proje...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please architecture for my project?",
+                "mode": {
+                    "id": "architecture",
+                    "label": "Architecture",
+                    "endpoint": "/architecture",
+                    "placeholder": "e.g. Explain how the database connects...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-07-31T11:55:15.395503"
+    },
+    "70dc8bbf-c1a3-4351-849c-6bd062c84cad": {
+        "id": "70dc8bbf-c1a3-4351-849c-6bd062c84cad",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "# Documentation for Bug-Reproduction-Engine\n\n## Overview\n\nThe `Bug-Reproduction-Engine` is a Python application designed to help in the detection and analysis of bugs in web applications. It uses Selenium WebDriver to automate browser interactions, SQLite for storing test results, and various utility functions to parse and analyze bug information.\n\n## Functions Documentation\n\n### Function: init_db\n\n**Description**: Initializes the database by creating a table if it does not already exist.\n\n**Parameters / Arguments**:\n\n| Parameter | Type     | Description               |\n|-----------|----------|-----------------------------|\n| None      |          | No arguments required.      |\n\n**Returns**: None\n\n**Usage Example**:\n```python\nfrom app import init_db\n\ninit_db()  # This will create the 'results' table if it doesn't already exist.\n```\n\n### Function: save_result\n\n**Description**: Saves a bug result to the database.\n\n**Parameters / Arguments**:\n\n| Parameter | Type     | Description               |\n|-----------|----------|-----------------------------|\n| bug_text  | str      | The text of the bug.        |\n| runs      | int      | Number of times the test was run. |\n| status    | str      | Status of the test (e.g., \"passed\", \"failed\"). |\n\n**Returns**: None\n\n**Usage Example**:\n```python\nfrom app import save_result\n\nsave_result(\"Invalid login page\", 10, \"failed\")\n```\n\n### Function: detect_bug\n\n**Description**: Detects if a bug is present based on keywords in the page source.\n\n**Parameters / Arguments**:\n\n| Parameter | Type     | Description               |\n|-----------|----------|-----------------------------|\n| driver    | WebDriver| The Selenium WebDriver instance. |\n\n**Returns**: Tuple `(bool, str)`\n\n- The first element is a boolean indicating if a bug was detected.\n- The second element is the keyword that triggered the detection.\n\n**Usage Example**:\n```python\nfrom app import detect_bug\n\ndriver = webdriver.Chrome()\ndetect_bug(driver)  # This will return whether a bug was detected and which keyword was found.\n```\n\n### Function: extract_steps\n\n**Description**: Extracts test steps from a given text based on certain keywords and patterns.\n\n**Parameters / Arguments**:\n\n| Parameter | Type     | Description               |\n|-----------|----------|-----------------------------|\n| text      | str      | The text containing the test instructions. |\n\n**Returns**: List of tuples, where each tuple represents a step with an action type and details.\n\n**Usage Example**:\n```python\nfrom app import extract_steps\n\ntest_text = \"\"\"\nOpen https://example.com\nEnter username: admin\nEnter password: 123456\nClick login button\n\"\"\"\nextract_steps(test_text)  # This will return a list of tuples representing the test steps.\n```\n\n### Function: analyze_results\n\n**Description**: Analyzes a list of boolean results to determine if a bug is confirmed, flaky, or not detected.\n\n**Parameters / Arguments**:\n\n| Parameter | Type     | Description               |\n|-----------|----------|-----------------------------|\n| results   | List[bool]| A list of boolean values indicating whether the test passed or failed. |\n\n**Returns**: Tuple `(str, str)`\n\n- The first element is a string indicating the bug status (\"confirmed\", \"flaky\", \"none\").\n- The second element is a descriptive message about the bug status.\n\n**Usage Example**:\n```python\nfrom app import analyze_results\n\ntest_results = [True, False, True]\nanalyze_results(test_results)  # This will return the bug status and a descriptive message.\n```\n\n## Summary\n\nThe `Bug-Reproduction-Engine` provides a comprehensive set of tools for automating bug detection in web applications. It uses Selenium WebDriver to interact with browsers, SQLite for data storage, and various utility functions for parsing and analyzing test results.\n\nThis documentation covers each function's purpose, parameters, return values, and usage examples, ensuring that developers can effectively integrate and use these components in their projects.",
+                "sources": [
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef init_db\n\ndef init_db():\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c.execute(\"\"\"\n    CREATE TABLE IF NOT EXISTS results (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        bug_text TEXT,\n        runs INTEGER,\n        status TEXT,\n        timestamp TEXT\n    )\n    \"\"\")\n\n    conn.commit()\n    conn.close()",
+                        "metadata": {
+                            "language": "python",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "project": "code debugger",
+                            "chunk_id": 9
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef save_result\n\ndef save_result(bug_text, runs, status):\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c.execute(\n        \"INSERT INTO results (bug_text, runs, status, timestamp) VALUES (?, ?, ?, ?)\",\n        (bug_text, runs, status, datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\"))\n    )\n\n    conn.commit()\n    conn.close()",
+                        "metadata": {
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "chunk_id": 10,
+                            "language": "python",
+                            "project": "code debugger"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef detect_bug\n\ndef detect_bug(driver):\n    try:\n        page = driver.page_source.lower()\n        keywords = [\"error\", \"invalid\", \"failed\", \"exception\"]\n\n        for word in keywords:\n            if word in page:\n                return True, word\n\n        return False, None\n\n    except:\n        return False, \"browser_closed\"",
+                        "metadata": {
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "project": "code debugger",
+                            "chunk_id": 5,
+                            "language": "python"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef extract_steps\n\ndef extract_steps(text):\n    steps = []\n    lines = text.lower().split(\"\\n\")\n\n    for line in lines:\n        url = re.findall(r'(https?://[^\\s]+)', line)\n        if url:\n            steps.append((\"open\", url[0]))\n\n        elif \"open\" in line:\n            steps.append((\"open\", \"https://example.com\"))\n\n        elif \"username\" in line:\n            steps.append((\"enter\", {\"type\": \"username\", \"value\": \"admin\"}))\n\n        elif \"password\" in line:\n            steps.append((\"enter\", {\"type\": \"password\", \"value\": \"123456\"}))\n\n        elif \"enter\" in line or \"type\" in line:\n            steps.append((\"enter\", {\"type\": \"text\", \"value\": \"test123\"}))\n\n        elif \"click\" in line:\n            if \"login\" in line:\n                steps.append((\"click\", \"login\"))\n            elif \"submit\" in line:\n                steps.append((\"click\", \"submit\"))\n            else:\n                steps.append((\"click\", \"button\"))\n\n    return steps",
+                        "metadata": {
+                            "project": "code debugger",
+                            "chunk_id": 1,
+                            "language": "python",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef analyze_results\n\ndef analyze_results(results):\n    true_count = sum(results)\n\n    if true_count == len(results):\n        return \"confirmed\", \"\ud83d\udea8 Bug Consistently Reproduced\"\n    elif true_count > 0:\n        return \"flaky\", \"\u26a0\ufe0f Flaky Bug (Sometimes Occurs)\"\n    else:\n        return \"none\", \"\u2705 No Bug Detected\"",
+                        "metadata": {
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "language": "python",
+                            "project": "code debugger",
+                            "chunk_id": 8
+                        }
+                    }
+                ],
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-07-31T11:58:09.070975"
+    }
+}

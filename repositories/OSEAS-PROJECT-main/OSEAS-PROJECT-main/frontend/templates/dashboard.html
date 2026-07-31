@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Engagement Analytics</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+<!-- STUDENT PROFILE CARD -->
+<div class="card" style="max-width:420px;margin:auto;text-align:left">
+  <h3>👤 Student Profile</h3>
+  <p><b>Name:</b> <span id="sname">John Doe</span></p>
+  <p><b>Student ID:</b> <span id="sid">AI2025</span></p>
+  <p><b>Status:</b> <span id="sstatus">-</span></p>
+  <p><b>Engagement:</b><span id="profileEngagement">0</span>%
+  <p><b>Grade:</b> <span id="grade">-</span></p>
+</div>
+
+<h1>🎓 Online Student Engagement Analytics</h1>
+<p style="color:#9ca3af">AI-based real-time attention monitoring</p>
+
+<input id="student" placeholder="Enter Student Name"
+style="padding:8px;border-radius:6px;border:none;margin:5px">
+
+<button onclick="startCamera()">🎥 Enable Camera</button>
+
+<button onclick="window.location.href='/logout'">🚪 Logout</button>
+
+<button class="start" onclick="startSession()">▶ Start</button>
+
+<button class="stop" onclick="stopSession()">⏹ Stop</button>
+
+<button class="faculty" onclick="window.location.href='/faculty'">📊 Faculty Dashboard</button>
+
+
+<div class="card" style="width:90%;margin:auto">
+<h2>👤 Student Live Status</h2>
+
+<h3>🧑 Student: <span id="studentNameDisplay">-</span></h3>
+
+<div style="margin:15px 0;text-align:center">
+
+  <video id="video" autoplay muted playsinline
+  style="
+    width:320px;
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+    transform: scaleX(-1);
+  ">
+</video>
+
+
+  <canvas id="canvas" width="320" height="240" style="display:none"></canvas>
+</div>
+
+
+<div class="grid">
+  <div class="card"><b>Presence</b><br><span id="p">0</span>s</div>
+  <div class="card"><b>Engagement</b><br><span id="e">0</span>%</div>
+  <div class="card"><b>Engagement Time</b><br><span id="et">0</span>s</div>
+   <div class="card"><b>Engagement Level</b><br><span id="el">-</span></div>
+  <div class="card"><b>Attention</b><br><span id="a">0</span>%</div>
+  <div class="card"><b>Movement</b><br><span id="mv">-</span></div>
+  <div class="card"><b>Attendance</b><br><span id="at">-</span></div>
+</div>
+
+<div class="card">
+Status:
+<span id="statusBadge" class="badge neutral">Idle</span>
+</div>
+
+
+
+</div>
+
+<canvas id="chart" width="420" height="180"></canvas>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+<script src="{{ url_for('static', filename='js/metrics.js') }}"></script>
+<script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>

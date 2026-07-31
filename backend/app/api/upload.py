@@ -6,8 +6,8 @@ import os
 
 router = APIRouter()
 
-UPLOAD_DIR = "uploads"
-EXTRACT_DIR = "repositories"
+UPLOAD_DIR = "../uploads"
+EXTRACT_DIR = "../repositories"
 
 Path(UPLOAD_DIR).mkdir(exist_ok=True)
 Path(EXTRACT_DIR).mkdir(exist_ok=True)

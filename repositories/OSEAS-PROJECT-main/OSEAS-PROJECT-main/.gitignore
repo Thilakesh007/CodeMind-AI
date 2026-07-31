@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+.pytest_cache/
+logs/*.log
+data/session_report.csv
+data/attendance.csv
+data/uploads/*
+!data/uploads/.gitkeep
+.DS_Store
+.idea/
+.vscode/

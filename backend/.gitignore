@@ -1,0 +1,6 @@
+repositories/
+uploads/
+vector_db/
+chroma_db/
+__pycache__/
+venv/

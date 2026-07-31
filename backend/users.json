@@ -1,0 +1,22 @@
+{
+    "test4@test.com": {
+        "email": "test4@test.com",
+        "name": "test",
+        "auth_provider": "local",
+        "created_at": "2026-07-30T10:05:38.337471",
+        "hashed_password": "3aae7aaf20ac498df07b9bad629f50e931333e93975f903011a7f8816b105cd8"
+    },
+    "thilakeshs007@gmail.com": {
+        "email": "thilakeshs007@gmail.com",
+        "name": "john",
+        "auth_provider": "local",
+        "created_at": "2026-07-30T10:17:04.403192",
+        "hashed_password": "61f62f7aca823e6c8ebcd86c56f82b1462c074e002b8bf0c1dbe2f82939cf21d"
+    },
+    "thilakeshs@gmail.com": {
+        "email": "thilakeshs@gmail.com",
+        "name": "thilakeshs",
+        "auth_provider": "google",
+        "created_at": "2026-07-30T10:18:23.520548"
+    }
+}

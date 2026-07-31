@@ -1,0 +1,136 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSoft {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+
+:root{
+  --bg-main:#f8fafc;
+  --bg-card:#ffffff;
+  --border:#e5e7eb;
+
+  --primary:#2563eb;
+  --success:#16a34a;
+  --danger:#dc2626;
+  --warning:#f59e0b;
+
+  --text-main:#111827;
+  --text-muted:#6b7280;
+}
+
+body{
+  background:var(--bg-main);
+  color:var(--text-main);
+  font-family:Arial;
+  text-align:center;
+}
+
+button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 18px rgba(37,99,235,0.35);
+}
+
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
+}
+
+.card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  margin:8px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+  animation: fadeInUp 0.6s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow:0 16px 32px rgba(0,0,0,0.12);
+}
+
+.live-engagement{
+  animation: pulseSoft 1.5s infinite;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+
+button{
+  padding:10px 22px;
+  border:none;
+  border-radius:8px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  background:var(--primary);
+  color:white;
+}
+button:hover{
+  opacity:0.9;
+}
+
+
+.start{background:var(--success)}
+.stop{background:var(--danger)}
+.faculty{background:var(--primary)}
+
+
+input{
+  background:white;
+  border:1px solid #e5e7eb;
+  color:#111827;
+  padding:10px;
+  border-radius:8px;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  transition:0.2s;
+}
+
+
+.badge{
+  padding:6px 16px;
+  border-radius:999px;
+  font-weight:600;
+  font-size:14px;
+  animation: fadeInUp 0.4s ease;
+}
+.engaged{
+  background:#dcfce7;
+  color:#166534;
+  box-shadow:0 0 0 0 rgba(34,197,94,0.6);
+}
+
+
+.engaged{background:#dcfce7;color:#166534}
+.distracted{background:#fee2e2;color:#991b1b}
+.neutral{background:#fef9c3;color:#854d0e}
+
+
+.engaged{background:#16a34a}
+.distracted{background:#dc2626}
+.neutral{background:#f59e0b;color:black}
