@@ -1,6 +1,7 @@
 chromadb
 python-dotenv
 fastapi
+python-multipart
 GitPython
 httpx
 PyJWT
