@@ -6,6 +6,5 @@ httpx
 PyJWT
 ollama
 pydantic
-sentence-transformers
 SQLAlchemy
 uvicorn
