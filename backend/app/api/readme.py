@@ -10,12 +10,13 @@ class ReadmeQuery(BaseModel):
     question: str
     project: Optional[str] = None
     history: Optional[List[Dict[str, Any]]] = []
+    model: Optional[str] = None
 
 @router.post("/readme")
 def run_readme_query(query: ReadmeQuery):
     return StreamingResponse(
         generate_readme(
-            query.question, query.project, query.history, stream=True
+            query.question, query.project, query.history, stream=True, model=query.model
         ),
         media_type="application/x-ndjson"
     )

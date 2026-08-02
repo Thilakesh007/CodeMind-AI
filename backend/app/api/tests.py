@@ -10,12 +10,13 @@ class TestQuery(BaseModel):
     question: str
     project: Optional[str] = None
     history: Optional[List[Dict[str, Any]]] = []
+    model: Optional[str] = None
 
 @router.post("/tests")
 def run_tests_query(query: TestQuery):
     return StreamingResponse(
         generate_tests(
-            query.question, query.project, query.history, stream=True
+            query.question, query.project, query.history, stream=True, model=query.model
         ),
         media_type="application/x-ndjson"
     )

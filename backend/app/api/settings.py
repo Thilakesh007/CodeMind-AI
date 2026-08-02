@@ -11,6 +11,20 @@ def get_settings():
     config = load_config()
     return config.dict()
 
+@router.get("/models")
+def get_models():
+    try:
+        import ollama
+        res = ollama.list()
+        # ollama.list() returns an object with a .models attribute. Each model has a .model attribute.
+        if hasattr(res, 'models'):
+            return {"models": [m.model for m in res.models]}
+        else:
+            return {"models": [m.get("name", m.get("model", "")) for m in res.get("models", [])]}
+    except Exception as e:
+        print(f"Error fetching models: {e}")
+        return {"models": ["llama3", "mistral", "codellama"]}
+
 @router.post("/")
 def update_settings(config: AppConfig):
     success = save_config(config)

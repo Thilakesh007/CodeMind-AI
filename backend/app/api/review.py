@@ -14,12 +14,13 @@ class ReviewRequest(BaseModel):
     question: str
     project: Optional[str] = None
     history: Optional[List[Dict[str, Any]]] = []
+    model: Optional[str] = None
 
 @router.post("/")
 def review(request: ReviewRequest):
     return StreamingResponse(
         review_codebase(
-            request.question, request.project, request.history, stream=True
+            request.question, request.project, request.history, stream=True, model=request.model
         ),
         media_type="application/x-ndjson"
     )

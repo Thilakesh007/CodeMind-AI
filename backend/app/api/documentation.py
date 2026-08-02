@@ -14,12 +14,13 @@ class DocumentationQuery(BaseModel):
     question: str
     project: Optional[str] = None
     history: Optional[List[Dict[str, Any]]] = []
+    model: Optional[str] = None
 
 @router.post("/")
 def documentation(request: DocumentationQuery):
     return StreamingResponse(
         generate_documentation(
-            request.question, request.project, request.history, stream=True
+            request.question, request.project, request.history, stream=True, model=request.model
         ),
         media_type="application/x-ndjson"
     )

@@ -4,7 +4,7 @@ from app.ai.prompts import README_PROMPT
 
 import json
 
-def generate_readme(question: str, project: str = None, history: list = None, stream: bool = False):
+def generate_readme(question: str, project: str = None, history: list = None, stream: bool = False, model: str = None):
     # Retrieve relevant context
     context_docs = search_vectors(question, project_name=project, n_results=5)
     
@@ -17,11 +17,11 @@ def generate_readme(question: str, project: str = None, history: list = None, st
     if stream:
         def stream_generator():
             yield json.dumps({"sources": context_docs}) + "\n"
-            for chunk in generate_response(prompt, history=history, stream=True):
+            for chunk in generate_response(prompt, history=history, stream=True, model=model):
                 yield json.dumps({"chunk": chunk}) + "\n"
         return stream_generator()
     else:
-        answer = generate_response(prompt, history=history, stream=False)
+        answer = generate_response(prompt, history=history, stream=False, model=model)
         return {
             "answer": answer,
             "sources": context_docs

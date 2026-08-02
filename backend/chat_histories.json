@@ -433,5 +433,456 @@
             }
         ],
         "updated_at": "2026-07-31T11:58:09.070975"
+    },
+    "92c1294a-b287-4662-8356-ca165a3c8d5a": {
+        "id": "92c1294a-b287-4662-8356-ca165a3c8d5a",
+        "title": "Can you please code review for my projec...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please code review for my project?",
+                "mode": {
+                    "id": "review",
+                    "label": "Code Review",
+                    "endpoint": "/review",
+                    "placeholder": "e.g. Review the authentication flow...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-07-31T19:30:21.833792"
+    },
+    "52a5e280-351a-4c75-bf16-3d329818677b": {
+        "id": "52a5e280-351a-4c75-bf16-3d329818677b",
+        "title": "Can you please code review for my projec...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please code review for my project?",
+                "mode": {
+                    "id": "review",
+                    "label": "Code Review",
+                    "endpoint": "/review",
+                    "placeholder": "e.g. Review the authentication flow...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-07-31T19:33:09.310242"
+    },
+    "222521c5-2993-4086-9f8d-e29ecfc70f51": {
+        "id": "222521c5-2993-4086-9f8d-e29ecfc70f51",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-07-31T19:33:41.852200"
+    },
+    "fe5bc176-fc02-4dde-9ab7-14a2ed9cb1a3": {
+        "id": "fe5bc176-fc02-4dde-9ab7-14a2ed9cb1a3",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-07-31T19:34:14.344688"
+    },
+    "afdc6da5-a925-42ac-a415-6bd8498c992c": {
+        "id": "afdc6da5-a925-42ac-a415-6bd8498c992c",
+        "title": "Can you please code review for my projec...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please code review for my project?",
+                "mode": {
+                    "id": "review",
+                    "label": "Code Review",
+                    "endpoint": "/review/",
+                    "placeholder": "e.g. Review the authentication flow...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-08-02T18:01:37.266049"
+    },
+    "fe5bd720-9b84-4ea3-adde-e3d40e3c9b37": {
+        "id": "fe5bd720-9b84-4ea3-adde-e3d40e3c9b37",
+        "title": "Can you please code review for my projec...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please code review for my project?",
+                "mode": {
+                    "id": "review",
+                    "label": "Code Review",
+                    "endpoint": "/review/",
+                    "placeholder": "e.g. Review the authentication flow...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-08-02T18:07:31.406067"
+    },
+    "2f356b44-2fa0-497c-9fea-9d09b740aa04": {
+        "id": "2f356b44-2fa0-497c-9fea-9d09b740aa04",
+        "title": "Can you please architecture for my proje...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please architecture for my project?",
+                "mode": {
+                    "id": "architecture",
+                    "label": "Architecture",
+                    "endpoint": "/architecture/",
+                    "placeholder": "e.g. Explain how the database connects...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "To provide an architectural explanation for your project, I'll need additional details about the codebase. Could you please share more information such as the programming language, the components involved, and any specific functionalities or features of the system? This will help me give a precise and tailored architecture explanation.",
+                "sources": [],
+                "mode": {
+                    "id": "architecture",
+                    "label": "Architecture",
+                    "endpoint": "/architecture/",
+                    "placeholder": "e.g. Explain how the database connects...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-08-02T18:08:13.861251"
+    },
+    "edf3d551-a5ef-48c2-8515-d259836db7ed": {
+        "id": "edf3d551-a5ef-48c2-8515-d259836db7ed",
+        "title": "Can you please unit tests for my project...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please unit tests for my project?",
+                "mode": {
+                    "id": "tests",
+                    "label": "Unit Tests",
+                    "endpoint": "/tests/",
+                    "placeholder": "e.g. Write tests for the login component...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "Certainly! I'll provide unit tests for each of the functions in `app.py` using Python's `unittest` framework. The tests will include happy-path, edge-case, and error-handling scenarios.\n\n### Testing Strategy\n\n1. **Happy-Path Tests**: These test normal, expected inputs to ensure the function behaves as intended.\n2. **Edge-Case Tests**: These test boundary conditions or extreme values to ensure the function handles them gracefully.\n3. **Error-Handling Tests**: These simulate errors and exceptions to ensure the function can handle unexpected situations without crashing.\n\n### Unit Tests\n\n#### analyze_results Function\n\n```python\nimport unittest\n\ndef analyze_results(results):\n    true_count = sum(results)\n\n    if true_count == len(results):\n        return \"confirmed\", \"\ud83d\udea8 Bug Consistently Reproduced\"\n    elif true_count > 0:\n        return \"flaky\", \"\u26a0\ufe0f Flaky Bug (Sometimes Occurs)\"\n    else:\n        return \"none\", \"\u2705 No Bug Detected\"\n\nclass TestAnalyzeResults(unittest.TestCase):\n\n    def test_happy_path(self):\n        results = [1, 0, 1]\n        expected_result = (\"flaky\", \"\u26a0\ufe0f Flaky Bug (Sometimes Occurs)\")\n        self.assertEqual(analyze_results(results), expected_result)\n\n    def test_edge_case_all_true(self):\n        results = [1, 1, 1]\n        expected_result = (\"confirmed\", \"\ud83d\udea8 Bug Consistently Reproduced\")\n        self.assertEqual(analyze_results(results), expected_result)\n\n    def test_edge_case_all_false(self):\n        results = [0, 0, 0]\n        expected_result = (\"none\", \"\u2705 No Bug Detected\")\n        self.assertEqual(analyze_results(results), expected_result)\n\n    def test_error_handling_empty_input(self):\n        results = []\n        expected_result = (\"none\", \"\u2705 No Bug Detected\")\n        self.assertEqual(analyze_results(results), expected_result)\n\nif __name__ == '__main__':\n    unittest.main()\n```\n\n#### detect_bug Function\n\n```python\nimport unittest\n\ndef detect_bug(driver):\n    try:\n        page = driver.page_source.lower()\n        keywords = [\"error\", \"invalid\", \"failed\", \"exception\"]\n\n        for word in keywords:\n            if word in page:\n                return True, word\n\n        return False, None\n\n    except:\n        return False, \"browser_closed\"\n\nclass TestDetectBug(unittest.TestCase):\n\n    def test_happy_path_error_keyword(self):\n        class MockDriver:\n            page_source = \"<html><body>error</body></html>\"\n        \n        driver = MockDriver()\n        expected_result = (True, \"error\")\n        self.assertEqual(detect_bug(driver), expected_result)\n\n    def test_edge_case_no_keywords(self):\n        class MockDriver:\n            page_source = \"<html><body>no error here</body></html>\"\n        \n        driver = MockDriver()\n        expected_result = (False, None)\n        self.assertEqual(detect_bug(driver), expected_result)\n\n    def test_error_handling_browser_closed(self):\n        class MockDriver:\n            page_source = \"\"\n        \n        driver = MockDriver()\n        expected_result = (False, \"browser_closed\")\n        self.assertEqual(detect_bug(driver), expected_result)\n\nif __name__ == '__main__':\n    unittest.main()\n```\n\n#### is_driver_alive Function\n\n```python\nimport unittest\n\ndef is_driver_alive(driver):\n    try:\n        driver.current_url\n        return True\n    except:\n        return False\n\nclass TestIsDriverAlive(unittest.TestCase):\n\n    def test_happy_path(self):\n        class MockDriver:\n            current_url = \"http://example.com\"\n        \n        driver = MockDriver()\n        expected_result = True\n        self.assertEqual(is_driver_alive(driver), expected_result)\n\n    def test_edge_case_no_current_url(self):\n        class MockDriver:\n            pass\n        \n        driver = MockDriver()\n        expected_result = False\n        self.assertEqual(is_driver_alive(driver), expected_result)\n\nif __name__ == '__main__':\n    unittest.main()\n```\n\n#### init_db Function\n\n```python\nimport unittest\nimport sqlite3\n\ndef init_db():\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c.execute(\"\"\"\n    CREATE TABLE IF NOT EXISTS results (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        bug_text TEXT,\n        runs INTEGER,\n        status TEXT,\n        timestamp TEXT\n    )\n    \"\"\")\n\n    conn.commit()\n    conn.close()\n\nclass TestInitDB(unittest.TestCase):\n\n    def test_happy_path(self):\n        init_db()  # No assertions needed, just ensure no exceptions are raised\n\n    def test_error_handling_connection_failure(self):\n        class MockSQLite3:\n            @staticmethod\n            def connect(*args, **kwargs):\n                raise sqlite3.Error(\"Failed to connect\")\n        \n        with patch('sqlite3', MockSQLite3):\n            with self.assertRaises(sqlite3.Error):\n                init_db()\n\nif __name__ == '__main__':\n    unittest.main()\n```\n\n### Summary\n\nThese unit tests cover happy-path, edge-case, and error-handling scenarios for each function in `app.py`. The `unittest` framework is used to ensure that the functions behave as expected under various conditions.",
+                "sources": [
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef analyze_results\n\ndef analyze_results(results):\n    true_count = sum(results)\n\n    if true_count == len(results):\n        return \"confirmed\", \"\ud83d\udea8 Bug Consistently Reproduced\"\n    elif true_count > 0:\n        return \"flaky\", \"\u26a0\ufe0f Flaky Bug (Sometimes Occurs)\"\n    else:\n        return \"none\", \"\u2705 No Bug Detected\"",
+                        "metadata": {
+                            "project": "code debugger",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "language": "python",
+                            "chunk_id": 8
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef detect_bug\n\ndef detect_bug(driver):\n    try:\n        page = driver.page_source.lower()\n        keywords = [\"error\", \"invalid\", \"failed\", \"exception\"]\n\n        for word in keywords:\n            if word in page:\n                return True, word\n\n        return False, None\n\n    except:\n        return False, \"browser_closed\"",
+                        "metadata": {
+                            "chunk_id": 5,
+                            "language": "python",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "project": "code debugger"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef is_driver_alive\n\ndef is_driver_alive(driver):\n    try:\n        driver.current_url\n        return True\n    except:\n        return False",
+                        "metadata": {
+                            "project": "code debugger",
+                            "chunk_id": 6,
+                            "language": "python",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef init_db\n\ndef init_db():\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c.execute(\"\"\"\n    CREATE TABLE IF NOT EXISTS results (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        bug_text TEXT,\n        runs INTEGER,\n        status TEXT,\n        timestamp TEXT\n    )\n    \"\"\")\n\n    conn.commit()\n    conn.close()",
+                        "metadata": {
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "chunk_id": 9,
+                            "language": "python",
+                            "project": "code debugger"
+                        }
+                    }
+                ],
+                "mode": {
+                    "id": "tests",
+                    "label": "Unit Tests",
+                    "endpoint": "/tests/",
+                    "placeholder": "e.g. Write tests for the login component...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-08-02T18:10:16.075691"
+    },
+    "1e318e7b-0f59-4450-b997-0bd442444bc9": {
+        "id": "1e318e7b-0f59-4450-b997-0bd442444bc9",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation/",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-08-02T18:42:25.999214"
+    },
+    "491c8a8f-f1ec-4d5f-8345-7c1a199ed479": {
+        "id": "491c8a8f-f1ec-4d5f-8345-7c1a199ed479",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation/",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-08-02T18:42:39.360465"
+    },
+    "e57eab1e-53ac-4b06-819a-b9b469d2b9cf": {
+        "id": "e57eab1e-53ac-4b06-819a-b9b469d2b9cf",
+        "title": "Can you please readme gen for my project...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please readme gen for my project?",
+                "mode": {
+                    "id": "readme",
+                    "label": "README Gen",
+                    "endpoint": "/readme/",
+                    "placeholder": "e.g. Write a comprehensive README for this project...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-08-02T18:42:54.970986"
+    },
+    "8497c690-5163-418f-88e5-8a709d0141c1": {
+        "id": "8497c690-5163-418f-88e5-8a709d0141c1",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation/",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-08-02T18:48:27.575285"
+    },
+    "bad21543-f8e4-4e69-954a-ea4dd773076b": {
+        "id": "bad21543-f8e4-4e69-954a-ea4dd773076b",
+        "title": "Can you please readme gen for my project...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please readme gen for my project?",
+                "mode": {
+                    "id": "readme",
+                    "label": "README Gen",
+                    "endpoint": "/readme/",
+                    "placeholder": "e.g. Write a comprehensive README for this project...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-08-02T18:49:57.153278"
+    },
+    "bac1167b-c333-435b-831e-78125cd65041": {
+        "id": "bac1167b-c333-435b-831e-78125cd65041",
+        "title": "Can you please code review for my projec...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please code review for my project?",
+                "mode": {
+                    "id": "review",
+                    "label": "Code Review",
+                    "endpoint": "/review/",
+                    "placeholder": "e.g. Review the authentication flow...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "\u274c **Error:** Failed to reach the AI backend."
+            }
+        ],
+        "updated_at": "2026-08-02T18:54:17.674776"
+    },
+    "2511a883-e013-40af-aad7-dc1ca488c39b": {
+        "id": "2511a883-e013-40af-aad7-dc1ca488c39b",
+        "title": "Can you please code review for my projec...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please code review for my project?",
+                "mode": {
+                    "id": "review",
+                    "label": "Code Review",
+                    "endpoint": "/review/",
+                    "placeholder": "e.g. Review the authentication flow...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-08-02T18:57:55.464024"
+    },
+    "da172ead-f9e8-41b5-a9de-7667956d1034": {
+        "id": "da172ead-f9e8-41b5-a9de-7667956d1034",
+        "title": "Can you please generate docs for my proj...",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Can you please generate docs for my project?",
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation/",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            },
+            {
+                "role": "ai",
+                "content": "**Overview:**\nThis project contains a Python script designed to help in bug reproduction and analysis. It utilizes SQLite as the database to store results, detects bugs within web pages using browser automation, extracts step-by-step instructions from text descriptions, and analyzes these steps for bug presence.\n\n**Deep Dive:**\n\n1. **init_db() Function:**\n   - This function initializes a SQLite database named `bug_results.db` if it does not already exist.\n   - It creates a table named `results` with columns for storing bug details such as ID, bug text, number of runs, status, and timestamp.\n\n2. **save_result(bug_text, runs, status) Function:**\n   - This function takes three parameters: `bug_text`, `runs`, and `status`.\n   - It inserts a new row into the `results` table with the provided data, along with the current timestamp.\n   - The database connection is committed and then closed.\n\n3. **detect_bug(driver) Function:**\n   - This function takes a browser automation driver (e.g., Selenium WebDriver) as an argument.\n   - It attempts to detect a bug in the web page loaded by the driver.\n   - It searches for specific keywords (\"error\", \"invalid\", \"failed\", \"exception\") in the page source and returns `True` with the detected keyword if found. If no keywords are found, it returns `False`.\n   - In case of an exception (e.g., browser closed), it catches the exception and returns `False` with the string \"browser_closed\".\n\n4. **extract_steps(text) Function:**\n   - This function takes a text description as input.\n   - It parses the text to extract step-by-step instructions, identifying actions like opening URLs, entering text, and clicking buttons.\n   - The extracted steps are returned as a list of tuples.\n\n5. **analyze_results(results) Function:**\n   - This function analyzes a list of boolean values (`results`), each indicating whether a bug was detected in a run.\n   - It counts the number of `True` values and returns three possible results:\n     - \"confirmed\" if all runs resulted in bug detection.\n     - \"flaky\" if some but not all runs resulted in bug detection.\n     - \"none\" if no bug was detected in any run.\n\n**Parameters / Arguments:**\n\n| Function | Parameter Name | Type | Description |\n| --- | --- | --- | --- |\n| init_db() | None | N/A | No parameters required. Initializes the SQLite database. |\n| save_result(bug_text, runs, status) | bug_text | str | The text description of the bug. |\n| save_result(bug_text, runs, status) | runs | int | Number of times the bug was detected. |\n| save_result(bug_text, runs, status) | status | str | Status of the run (e.g., \"success\", \"failure\"). |\n| detect_bug(driver) | driver | object | Browser automation driver instance. |\n| extract_steps(text) | text | str | A text description containing step-by-step instructions. |\n\n**Returns:**\n\n- **init_db()**: `None`\n- **save_result(bug_text, runs, status)**: `None`\n- **detect_bug(driver)**: Tuple `(bool, str)` - Where the boolean indicates if a bug was detected, and the string describes the detected issue or an error.\n- **extract_steps(text)**: List of tuples representing step-by-step instructions.\n- **analyze_results(results)**: Tuple `(str, str)` - Where the first element is \"confirmed\", \"flaky\", or \"none\" and the second element provides a detailed message.\n\n**Usage Example:**\n\n```python\n# Import necessary libraries\nimport sqlite3\nfrom datetime import datetime\nimport re\n\n# Initialize the database\ninit_db()\n\n# Save results to the database\nsave_result(\"Invalid login attempt\", 5, \"failure\")\n\n# Create a hypothetical browser automation driver instance (for demonstration)\nclass BrowserDriver:\n    def page_source(self):\n        return \"<html><body><p>Error: Invalid credentials</p></body></html>\"\n\ndriver = BrowserDriver()\n\n# Detect bug in the web page\nis_bug, detected_keyword = detect_bug(driver)\n\nif is_bug:\n    print(f\"Bug Detected: {detected_keyword}\")\nelse:\n    print(\"No Bug Detected\")\n\n# Extract steps from a text description\ntext_description = \"\"\"\n1. Open https://example.com\n2. Enter username: admin\n3. Enter password: 123456\n4. Click login button\n\"\"\"\nsteps = extract_steps(text_description)\nprint(steps)\n\n# Analyze the results of bug detection runs\nresults = [True, False, True]\nbug_status, message = analyze_results(results)\nprint(bug_status, message)\n```\n\nThis code initializes a database, saves a result, simulates web page content for bug detection, extracts steps from a text description, and analyzes the bug detection runs.",
+                "sources": [
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef init_db\n\ndef init_db():\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c.execute(\"\"\"\n    CREATE TABLE IF NOT EXISTS results (\n        id INTEGER PRIMARY KEY AUTOINCREMENT,\n        bug_text TEXT,\n        runs INTEGER,\n        status TEXT,\n        timestamp TEXT\n    )\n    \"\"\")\n\n    conn.commit()\n    conn.close()",
+                        "metadata": {
+                            "chunk_id": 9,
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "project": "code debugger",
+                            "language": "python"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef save_result\n\ndef save_result(bug_text, runs, status):\n    conn = sqlite3.connect(\"bug_results.db\")\n    c = conn.cursor()\n\n    c.execute(\n        \"INSERT INTO results (bug_text, runs, status, timestamp) VALUES (?, ?, ?, ?)\",\n        (bug_text, runs, status, datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\"))\n    )\n\n    conn.commit()\n    conn.close()",
+                        "metadata": {
+                            "language": "python",
+                            "chunk_id": 10,
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "project": "code debugger"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef detect_bug\n\ndef detect_bug(driver):\n    try:\n        page = driver.page_source.lower()\n        keywords = [\"error\", \"invalid\", \"failed\", \"exception\"]\n\n        for word in keywords:\n            if word in page:\n                return True, word\n\n        return False, None\n\n    except:\n        return False, \"browser_closed\"",
+                        "metadata": {
+                            "language": "python",
+                            "project": "code debugger",
+                            "chunk_id": 5,
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef extract_steps\n\ndef extract_steps(text):\n    steps = []\n    lines = text.lower().split(\"\\n\")\n\n    for line in lines:\n        url = re.findall(r'(https?://[^\\s]+)', line)\n        if url:\n            steps.append((\"open\", url[0]))\n\n        elif \"open\" in line:\n            steps.append((\"open\", \"https://example.com\"))\n\n        elif \"username\" in line:\n            steps.append((\"enter\", {\"type\": \"username\", \"value\": \"admin\"}))\n\n        elif \"password\" in line:\n            steps.append((\"enter\", {\"type\": \"password\", \"value\": \"123456\"}))\n\n        elif \"enter\" in line or \"type\" in line:\n            steps.append((\"enter\", {\"type\": \"text\", \"value\": \"test123\"}))\n\n        elif \"click\" in line:\n            if \"login\" in line:\n                steps.append((\"click\", \"login\"))\n            elif \"submit\" in line:\n                steps.append((\"click\", \"submit\"))\n            else:\n                steps.append((\"click\", \"button\"))\n\n    return steps",
+                        "metadata": {
+                            "project": "code debugger",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py",
+                            "chunk_id": 1,
+                            "language": "python"
+                        }
+                    },
+                    {
+                        "content": "File: ../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py\nType: FunctionDef analyze_results\n\ndef analyze_results(results):\n    true_count = sum(results)\n\n    if true_count == len(results):\n        return \"confirmed\", \"\ud83d\udea8 Bug Consistently Reproduced\"\n    elif true_count > 0:\n        return \"flaky\", \"\u26a0\ufe0f Flaky Bug (Sometimes Occurs)\"\n    else:\n        return \"none\", \"\u2705 No Bug Detected\"",
+                        "metadata": {
+                            "project": "code debugger",
+                            "chunk_id": 8,
+                            "language": "python",
+                            "file": "../repositories/code debugger\\code debugger\\bug-reproduction-engine\\app.py"
+                        }
+                    }
+                ],
+                "mode": {
+                    "id": "documentation",
+                    "label": "Generate Docs",
+                    "endpoint": "/documentation/",
+                    "placeholder": "e.g. Generate docs for api/users.py...",
+                    "icon": {}
+                }
+            }
+        ],
+        "updated_at": "2026-08-02T19:05:46.101701"
     }
 }

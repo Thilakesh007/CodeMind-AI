@@ -7,12 +7,12 @@ import { Loader2, Send, FileCode, FolderGit2, MessageSquare, Code, FileText, Lay
 import api from '../services/api';
 
 const MODES = [
-  { id: 'chat', label: 'General Chat', endpoint: '/chat', placeholder: 'Ask a question about your repository...', icon: MessageSquare },
-  { id: 'review', label: 'Code Review', endpoint: '/review', placeholder: 'e.g. Review the authentication flow...', icon: Code },
-  { id: 'documentation', label: 'Generate Docs', endpoint: '/documentation', placeholder: 'e.g. Generate docs for api/users.py...', icon: FileText },
-  { id: 'architecture', label: 'Architecture', endpoint: '/architecture', placeholder: 'e.g. Explain how the database connects...', icon: Layers },
-  { id: 'tests', label: 'Unit Tests', endpoint: '/tests', placeholder: 'e.g. Write tests for the login component...', icon: CheckSquare },
-  { id: 'readme', label: 'README Gen', endpoint: '/readme', placeholder: 'e.g. Write a comprehensive README for this project...', icon: FileEdit },
+  { id: 'chat', label: 'General Chat', endpoint: '/chat/', placeholder: 'Ask a question about your repository...', icon: MessageSquare },
+  { id: 'review', label: 'Code Review', endpoint: '/review/', placeholder: 'e.g. Review the authentication flow...', icon: Code },
+  { id: 'documentation', label: 'Generate Docs', endpoint: '/documentation/', placeholder: 'e.g. Generate docs for api/users.py...', icon: FileText },
+  { id: 'architecture', label: 'Architecture', endpoint: '/architecture/', placeholder: 'e.g. Explain how the database connects...', icon: Layers },
+  { id: 'tests', label: 'Unit Tests', endpoint: '/tests/', placeholder: 'e.g. Write tests for the login component...', icon: CheckSquare },
+  { id: 'readme', label: 'README Gen', endpoint: '/readme/', placeholder: 'e.g. Write a comprehensive README for this project...', icon: FileEdit },
 ];
 
 const AiQueryInterface = ({ title = "AI Workspace" }) => {
@@ -24,6 +24,8 @@ const AiQueryInterface = ({ title = "AI Workspace" }) => {
   const location = useLocation();
   const [selectedProject, setSelectedProject] = useState(location.state?.project || '');
   const [projects, setProjects] = useState([]);
+  const [selectedModel, setSelectedModel] = useState('');
+  const [models, setModels] = useState([]);
 
   const [activeMode, setActiveMode] = useState(MODES[0]);
 
@@ -41,7 +43,19 @@ const AiQueryInterface = ({ title = "AI Workspace" }) => {
         console.error("Failed to fetch projects", error);
       }
     };
+    const fetchModels = async () => {
+      try {
+        const response = await api.get('/settings/models');
+        setModels(response.data.models || []);
+        if (response.data.models && response.data.models.length > 0) {
+            setSelectedModel(response.data.models[0]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch models", error);
+      }
+    };
     fetchProjects();
+    fetchModels();
     fetchChatList();
   }, []);
 
@@ -132,6 +146,9 @@ const AiQueryInterface = ({ title = "AI Workspace" }) => {
       const payload = { question: userMessage.content, history: cleanHistory };
       if (selectedProject) {
         payload.project = selectedProject;
+      }
+      if (selectedModel) {
+        payload.model = selectedModel;
       }
 
       setHistory(prev => [...prev, { role: 'ai', content: '', sources: [], mode: activeMode }]);
@@ -301,6 +318,23 @@ const AiQueryInterface = ({ title = "AI Workspace" }) => {
                 ))}
               </select>
             </div>
+
+            {/* Model Selector */}
+            {models.length > 0 && (
+              <div className="flex items-center bg-[#0a0a0a] border border-[#262626] rounded-xl px-3 py-1.5 flex-shrink-0">
+                <Zap className="h-4 w-4 text-gray-400 mr-2" />
+                <select
+                  value={selectedModel}
+                  onChange={(e) => setSelectedModel(e.target.value)}
+                  className="bg-transparent text-sm text-white focus:outline-none cursor-pointer"
+                >
+                  <option value="" className="bg-[#0a0a0a]">Default Model</option>
+                  {models.map(m => (
+                    <option key={m} value={m} className="bg-[#0a0a0a]">{m}</option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
         </div>
 
@@ -441,7 +475,7 @@ const AiQueryInterface = ({ title = "AI Workspace" }) => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full bg-[#121212] border border-[#262626] rounded-2xl py-4 pl-5 pr-14 text-white focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all shadow-inner"
-                placeholder={activeMode.placeholder}
+                placeholder={`${activeMode.placeholder} (Use @filename to include specific files)`}
                 disabled={loading}
               />
               <button

@@ -5,7 +5,7 @@ from app.vectorstore.chroma_client import search_vectors
 
 import json
 
-def review_codebase(question: str, project: str = None, history: list = None, stream: bool = False):
+def review_codebase(question: str, project: str = None, history: list = None, stream: bool = False, model: str = None):
     results = search_vectors(question, project_name=project)
 
     context = "\n\n".join(
@@ -23,11 +23,11 @@ def review_codebase(question: str, project: str = None, history: list = None, st
     if stream:
         def stream_generator():
             yield json.dumps({"sources": results}) + "\n"
-            for chunk in generate_response(prompt, history=history, stream=True):
+            for chunk in generate_response(prompt, history=history, stream=True, model=model):
                 yield json.dumps({"chunk": chunk}) + "\n"
         return stream_generator()
     else:
-        answer = generate_response(prompt, history=history, stream=False)
+        answer = generate_response(prompt, history=history, stream=False, model=model)
         return {
             "answer": answer,
             "sources": results

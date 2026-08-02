@@ -4,7 +4,7 @@ from app.config_manager import load_config
 # For fallback local models
 import ollama
 
-def generate_response(prompt: str, history: list = None, stream: bool = False):
+def generate_response(prompt: str, history: list = None, stream: bool = False, model: str = None):
     config = load_config()
     provider = getattr(config, "ai_provider", "ollama").lower()
     
@@ -26,7 +26,7 @@ def generate_response(prompt: str, history: list = None, stream: bool = False):
         elif provider == "gemini":
             return _generate_gemini(messages, config, stream)
         else:
-            return _generate_ollama(messages, config, stream)
+            return _generate_ollama(messages, config, stream, model)
     except Exception as e:
         if stream:
             def error_gen():
@@ -35,10 +35,10 @@ def generate_response(prompt: str, history: list = None, stream: bool = False):
         else:
             return f"Error calling {provider}: {str(e)}"
 
-def _generate_ollama(messages, config, stream):
+def _generate_ollama(messages, config, stream, override_model=None):
     host = os.environ.get("OLLAMA_HOST", config.ollama_host)
     client = ollama.Client(host=host)
-    model_name = config.primary_model
+    model_name = override_model if override_model else config.primary_model
     
     if stream:
         response = client.chat(
